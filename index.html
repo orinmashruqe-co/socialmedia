@@ -21,110 +21,106 @@
     svg.icon { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
     svg.icon-sm { width: 15px; height: 15px; }
 
+    /* Auth Overlay Screen */
+    .auth-overlay {
+      position: fixed; inset: 0; background: #f0f2f5; z-index: 999;
+      display: flex; align-items: center; justify-content: center; padding: 20px;
+    }
+    .auth-overlay.hidden { display: none; }
+    .auth-container {
+      max-width: 920px; width: 100%; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center;
+    }
+    @media (max-width: 780px) { .auth-container { grid-template-columns: 1fr; text-align: center; } }
+    .auth-brand h1 { font-size: 42px; color: var(--primary); margin: 0 0 12px; letter-spacing: -1px; }
+    .auth-brand p { font-size: 19px; color: #333; line-height: 1.45; margin: 0; }
+    .auth-card {
+      background: white; padding: 26px; border-radius: 12px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.09); border: 1px solid var(--border);
+    }
+    .auth-tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 18px; }
+    .auth-tab {
+      flex: 1; padding: 10px; text-align: center; font-weight: 700; cursor: pointer;
+      color: var(--muted); border-bottom: 2px solid transparent;
+    }
+    .auth-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+    .auth-card input {
+      width: 100%; padding: 11px 13px; margin-bottom: 12px; border: 1px solid #d0d0d0;
+      border-radius: 8px; font-size: 14px; outline: none;
+    }
+    .auth-card input:focus { border-color: var(--primary); }
+    .auth-btn {
+      width: 100%; padding: 12px; background: var(--primary); color: white; border: none;
+      border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer;
+    }
+    .auth-btn:hover { background: var(--primary-hover); }
+    .auth-error { color: #c62828; font-size: 13px; margin-bottom: 10px; display: none; }
+
     /* Top Navbar */
     .navbar {
-      background: var(--card);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      padding: 0 24px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      background: var(--card); border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
       box-shadow: 0 1px 3px rgba(0,0,0,0.04);
     }
     .nav-left { display: flex; align-items: center; gap: 14px; }
     .logo {
       background: linear-gradient(135deg, var(--fb-blue), var(--primary));
-      color: white;
-      font-weight: 800;
-      font-size: 19px;
-      padding: 6px 13px;
-      border-radius: 8px;
-      letter-spacing: -0.4px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      color: white; font-weight: 800; font-size: 19px; padding: 6px 13px;
+      border-radius: 8px; letter-spacing: -0.4px; display: flex; align-items: center; gap: 6px; cursor: pointer;
     }
     .search-wrap { position: relative; display: flex; align-items: center; }
     .search-wrap svg { position: absolute; left: 11px; color: var(--muted); pointer-events: none; }
     .search-box {
-      background: #eef3f8;
-      border: 1px solid transparent;
-      padding: 8px 14px 8px 34px;
-      border-radius: 8px;
-      width: 250px;
-      font-size: 14px;
-      outline: none;
-      transition: all 0.15s;
+      background: #eef3f8; border: 1px solid transparent; padding: 8px 14px 8px 34px;
+      border-radius: 8px; width: 240px; font-size: 14px; outline: none; transition: all 0.15s;
     }
-    .search-box:focus { background: white; border-color: var(--primary); width: 290px; }
-    .nav-links { display: flex; gap: 20px; align-items: center; height: 100%; }
+    .search-box:focus { background: white; border-color: var(--primary); width: 280px; }
+    .nav-links { display: flex; gap: 16px; align-items: center; height: 100%; }
     .nav-item {
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--muted);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 3px;
-      padding: 0 10px;
-      height: 100%;
-      border-bottom: 2px solid transparent;
-      transition: color 0.15s;
+      cursor: pointer; font-size: 12px; font-weight: 600; color: var(--muted);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 3px; padding: 0 10px; height: 100%; border-bottom: 2px solid transparent;
     }
     .nav-item.active, .nav-item:hover { color: var(--primary); border-bottom-color: var(--primary); }
-    .status-badge {
-      font-size: 11px;
-      padding: 4px 10px;
-      border-radius: 20px;
-      background: #e6f4ea;
-      color: #137333;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 5px;
+    .logout-btn {
+      background: #f2f3f5; border: 1px solid #d5d7da; color: var(--text);
+      padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 5px;
     }
-    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #137333; }
+    .logout-btn:hover { background: #e4e6e9; }
 
-    /* 3-Column Layout */
+    /* Layout */
     .layout {
-      max-width: 1140px;
-      margin: 22px auto;
-      padding: 0 16px;
-      display: grid;
-      grid-template-columns: 245px 1fr 295px;
-      gap: 20px;
-      align-items: start;
+      max-width: 1140px; margin: 22px auto; padding: 0 16px;
+      display: grid; grid-template-columns: 255px 1fr 295px; gap: 20px; align-items: start;
     }
     @media (max-width: 920px) {
       .layout { grid-template-columns: 1fr; }
       .left-col, .right-col { display: none; }
-      .search-box { width: 150px; }
+      .search-box { width: 140px; }
     }
 
     .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 16px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      overflow: hidden; margin-bottom: 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.03);
     }
 
-    /* Left Profile Card */
-    .cover-banner { height: 64px; background: linear-gradient(120deg, #1877f2, #0a66c2); }
-    .profile-info { padding: 0 16px 16px; text-align: center; margin-top: -32px; }
+    /* Profile Card & Avatar Upload */
+    .cover-banner { height: 68px; background: linear-gradient(120deg, #1877f2, #0a66c2); }
+    .profile-info { padding: 0 16px 16px; text-align: center; margin-top: -36px; }
+    .avatar-wrap { position: relative; display: inline-block; margin-bottom: 8px; }
     .avatar-lg {
-      width: 64px; height: 64px; border-radius: 50%;
-      background: #0a66c2; color: white; font-size: 24px; font-weight: 700;
-      display: inline-flex; align-items: center; justify-content: center;
-      border: 3px solid white; margin-bottom: 8px;
+      width: 72px; height: 72px; border-radius: 50%; background: #0a66c2; color: white;
+      font-size: 26px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;
+      border: 3px solid white; object-fit: cover; overflow: hidden;
     }
+    .avatar-lg img { width: 100%; height: 100%; object-fit: cover; }
+    .cam-btn {
+      position: absolute; bottom: 0; right: 0; width: 26px; height: 26px; border-radius: 50%;
+      background: white; border: 1px solid #ccc; color: #333; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    }
+    .cam-btn:hover { background: #f0f2f5; }
     .profile-name { font-weight: 700; font-size: 16px; margin: 0; }
     .profile-headline { font-size: 12px; color: var(--muted); margin: 4px 0 12px; line-height: 1.4; }
     .profile-stats { border-top: 1px solid var(--border); padding-top: 12px; text-align: left; font-size: 12px; }
@@ -135,42 +131,37 @@
     .edit-profile-inputs input {
       width: 100%; padding: 6px 8px; margin-bottom: 8px; border: 1px solid #d0d0d0; border-radius: 6px; font-size: 12px;
     }
+    .save-prof-btn {
+      width: 100%; padding: 7px; background: #eef3f8; color: var(--primary); border: 1px solid var(--primary);
+      border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer;
+    }
+    .save-prof-btn:hover { background: var(--primary); color: white; }
+
+    /* Avatars in Feed & Chat */
+    .avatar-sm {
+      width: 42px; height: 42px; border-radius: 50%; background: var(--fb-blue); color: white;
+      font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden;
+    }
+    .avatar-sm img { width: 100%; height: 100%; object-fit: cover; }
 
     /* Composer */
     .composer { padding: 16px; }
     .composer-top { display: flex; gap: 12px; margin-bottom: 12px; }
-    .avatar-sm {
-      width: 42px; height: 42px; border-radius: 50%;
-      background: var(--fb-blue); color: white; font-weight: 700;
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
     .composer textarea {
       width: 100%; border: 1px solid #d5d5d5; border-radius: 12px;
       padding: 11px 14px; font-size: 14px; resize: vertical; min-height: 76px; outline: none;
     }
     .composer textarea:focus { border-color: var(--primary); }
-
-    /* Media Preview Box */
     .media-preview {
-      position: relative;
-      margin-bottom: 12px;
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: #000;
-      display: none;
+      position: relative; margin-bottom: 12px; border-radius: 10px; overflow: hidden;
+      border: 1px solid var(--border); background: #000; display: none;
     }
     .media-preview.active { display: block; }
-    .media-preview img, .media-preview video {
-      width: 100%; max-height: 360px; object-fit: contain; display: block; margin: 0 auto;
-    }
+    .media-preview img, .media-preview video { width: 100%; max-height: 360px; object-fit: contain; display: block; margin: 0 auto; }
     .remove-media-btn {
-      position: absolute; top: 10px; right: 10px;
-      background: rgba(0,0,0,0.75); color: white; border: none;
-      border-radius: 50%; width: 28px; height: 28px; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
+      position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.75); color: white; border: none;
+      border-radius: 50%; width: 28px; height: 28px; cursor: pointer; display: flex; align-items: center; justify-content: center;
     }
-
     .composer-toolbar {
       display: flex; justify-content: space-between; align-items: center;
       flex-wrap: wrap; gap: 10px; padding-top: 10px; border-top: 1px solid var(--border);
@@ -180,7 +171,6 @@
       background: #f4f6f8; border: 1px solid #e2e5e9; color: var(--text);
       padding: 7px 12px; border-radius: 8px; font-size: 13px; font-weight: 600;
       cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
-      transition: background 0.15s;
     }
     .tool-btn:hover { background: #e8ecf0; }
     .cat-select {
@@ -213,12 +203,8 @@
     .badge-social { background: #e7f3ff; color: #1877f2; }
     .badge-career { background: #e8f5e9; color: #1b5e20; }
     .badge-hiring { background: #fff3e0; color: #e65100; }
-
     .post-body { font-size: 14.5px; line-height: 1.5; margin-bottom: 12px; white-space: pre-wrap; }
-    .post-media {
-      width: 100%; border-radius: 10px; margin-bottom: 12px; max-height: 440px;
-      object-fit: cover; background: #000; display: block;
-    }
+    .post-media { width: 100%; border-radius: 10px; margin-bottom: 12px; max-height: 440px; object-fit: cover; background: #000; display: block; }
     .post-stats {
       display: flex; justify-content: space-between; font-size: 12px; color: var(--muted);
       padding-bottom: 8px; border-bottom: 1px solid var(--border);
@@ -254,18 +240,69 @@
     .connect-info { display: flex; gap: 9px; align-items: center; }
     .connect-btn {
       border: 1px solid var(--primary); color: var(--primary); background: white;
-      border-radius: 16px; padding: 5px 12px; font-size: 12px; font-weight: 600;
+      border-radius: 16px; padding: 5px 11px; font-size: 12px; font-weight: 600;
       cursor: pointer; display: inline-flex; align-items: center; gap: 4px;
     }
     .connect-btn.connected { background: #eef3f8; color: var(--muted); border-color: #ccc; }
+
+    /* Real-Time Messaging Drawer / Modal */
+    .chat-view { display: none; }
+    .chat-view.active { display: block; }
+    .feed-view.hidden { display: none; }
+    .chat-box {
+      display: grid; grid-template-columns: 220px 1fr; height: 520px;
+      background: white; border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+    }
+    @media (max-width: 650px) { .chat-box { grid-template-columns: 1fr; } }
+    .chat-sidebar { border-right: 1px solid var(--border); background: #fafafa; overflow-y: auto; }
+    .chat-sidebar-header { padding: 14px; font-weight: 700; border-bottom: 1px solid var(--border); font-size: 14px; }
+    .chat-room-item {
+      padding: 12px 14px; cursor: pointer; border-bottom: 1px solid #efefef;
+      display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600;
+    }
+    .chat-room-item.active, .chat-room-item:hover { background: #e7f3ff; color: var(--primary); }
+    .chat-main { display: flex; flex-direction: column; height: 100%; }
+    .chat-header { padding: 13px 16px; border-bottom: 1px solid var(--border); font-weight: 700; font-size: 14px; display: flex; justify-content: space-between; }
+    .chat-messages { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: #f8f9fa; }
+    .msg-bubble { max-width: 75%; padding: 9px 13px; border-radius: 14px; font-size: 13.5px; line-height: 1.4; }
+    .msg-other { background: white; border: 1px solid var(--border); align-self: flex-start; }
+    .msg-me { background: var(--fb-blue); color: white; align-self: flex-end; }
+    .msg-meta { font-size: 10px; opacity: 0.75; margin-bottom: 3px; font-weight: 700; }
+    .chat-input-area { padding: 12px; border-top: 1px solid var(--border); display: flex; gap: 8px; background: white; }
+    .chat-input-area input { flex: 1; padding: 9px 14px; border: 1px solid #d0d0d0; border-radius: 20px; font-size: 13.5px; outline: none; }
   </style>
 </head>
 <body>
 
-  <!-- Top Navigation -->
+  <!-- 1. Login / Register Screen -->
+  <div class="auth-overlay" id="authOverlay">
+    <div class="auth-container">
+      <div class="auth-brand">
+        <h1>ProConnect</h1>
+        <p>Connect with friends, showcase your career, share photos & videos, and message your network in real time.</p>
+      </div>
+      <div class="auth-card">
+        <div class="auth-tabs">
+          <div class="auth-tab active" id="tabLogin" onclick="switchAuthTab('login')">Log In</div>
+          <div class="auth-tab" id="tabSignup" onclick="switchAuthTab('signup')">Create Account</div>
+        </div>
+        <div class="auth-error" id="authError"></div>
+
+        <div id="signupFields" style="display:none;">
+          <input type="text" id="authName" placeholder="Full Name (e.g. Orin Mashruqe)" />
+          <input type="text" id="authHeadline" placeholder="Headline (e.g. Founder & Builder)" />
+        </div>
+        <input type="email" id="authEmail" placeholder="Email address" />
+        <input type="password" id="authPassword" placeholder="Password (min 6 characters)" />
+        <button class="auth-btn" id="authSubmitBtn" onclick="handleAuthSubmit()">Log In</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Top Navigation -->
   <nav class="navbar">
     <div class="nav-left">
-      <div class="logo">
+      <div class="logo" onclick="switchMainTab('feed', document.getElementById('navFeed'))">
         <svg class="icon" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
         ProConnect
       </div>
@@ -276,141 +313,175 @@
     </div>
 
     <div class="nav-links">
-      <div class="nav-item active" onclick="setFilter('all', this)">
+      <div class="nav-item active" id="navFeed" onclick="switchMainTab('feed', this)">
         <svg class="icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         <span>Feed</span>
       </div>
-      <div class="nav-item" onclick="setFilter('Career', this)">
-        <svg class="icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        <span>Network</span>
+      <div class="nav-item" id="navMessages" onclick="switchMainTab('messages', this)">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        <span>Messaging</span>
       </div>
-      <div class="nav-item" onclick="setFilter('Hiring', this)">
+      <div class="nav-item" id="navJobs" onclick="switchMainTab('jobs', this)">
         <svg class="icon" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
         <span>Jobs</span>
       </div>
-      <span class="status-badge" id="dbStatus"><span class="status-dot"></span> Connecting</span>
+      <button class="logout-btn" onclick="handleLogout()">
+        <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Log Out
+      </button>
     </div>
   </nav>
 
-  <!-- Main 3-Column App -->
+  <!-- 3. Main 3-Column App -->
   <div class="layout">
 
-    <!-- Left Column: Profile Card -->
+    <!-- Left Column: Profile Card with Photo Upload -->
     <aside class="left-col">
       <div class="card">
         <div class="cover-banner"></div>
         <div class="profile-info">
-          <div class="avatar-lg" id="profileAvatar">O</div>
-          <h3 class="profile-name" id="displayName">Orin Mashruqe</h3>
-          <p class="profile-headline" id="displayHeadline">Founder & Builder • Dhaka, Bangladesh</p>
+          <div class="avatar-wrap">
+            <div class="avatar-lg" id="profileAvatar">U</div>
+            <button class="cam-btn" title="Upload Profile Photo" onclick="document.getElementById('avatarInput').click()">
+              <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            </button>
+            <input type="file" id="avatarInput" accept="image/*" style="display:none" onchange="uploadProfilePic(event)" />
+          </div>
+          <h3 class="profile-name" id="displayName">Member</h3>
+          <p class="profile-headline" id="displayHeadline">ProConnect Member</p>
           <div class="profile-stats">
             <div class="stat-row"><span>Profile viewers</span><span class="stat-num">142</span></div>
             <div class="stat-row"><span>Connections</span><span class="stat-num" id="connCount">48</span></div>
           </div>
         </div>
         <div class="edit-profile-inputs">
-          <label>Your Display Name</label>
-          <input type="text" id="userNameInput" value="Orin Mashruqe" oninput="updateProfileUI()" />
-          <label>Professional Headline</label>
-          <input type="text" id="userRoleInput" value="Founder & Builder • Dhaka" oninput="updateProfileUI()" />
+          <label>Full Name</label>
+          <input type="text" id="userNameInput" placeholder="Your Name" />
+          <label>Headline / Bio</label>
+          <input type="text" id="userRoleInput" placeholder="Your Headline" />
+          <button class="save-prof-btn" id="saveProfBtn" onclick="saveProfileDetails()">Save Profile</button>
         </div>
       </div>
     </aside>
 
-    <!-- Center Column: Create Post + Feed -->
+    <!-- Center Column: Feed View OR Messaging View -->
     <main>
-      <div class="card composer">
-        <div class="composer-top">
-          <div class="avatar-sm" id="composerAvatar">O</div>
-          <textarea id="postContent" placeholder="Share an update, photo, video, or job opportunity..."></textarea>
-        </div>
-
-        <!-- Live Media Preview before posting -->
-        <div class="media-preview" id="mediaPreviewBox">
-          <button class="remove-media-btn" onclick="clearSelectedMedia()" title="Remove media">
-            <svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          </button>
-          <div id="mediaPreviewContent"></div>
-        </div>
-
-        <!-- Hidden File Inputs for Direct Device Upload -->
-        <input type="file" id="photoInput" accept="image/*" style="display:none" onchange="handleFileSelect(event, 'image')" />
-        <input type="file" id="videoInput" accept="video/*" style="display:none" onchange="handleFileSelect(event, 'video')" />
-
-        <div class="composer-toolbar">
-          <div class="media-buttons">
-            <button type="button" class="tool-btn" onclick="document.getElementById('photoInput').click()">
-              <svg class="icon" style="color:#1877f2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-              Photo
-            </button>
-            <button type="button" class="tool-btn" onclick="document.getElementById('videoInput').click()">
-              <svg class="icon" style="color:#057642" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-              Video
-            </button>
-            <select id="postCategory" class="cat-select">
-              <option value="Social">Social Update</option>
-              <option value="Career">Career Insight</option>
-              <option value="Hiring">Job / Hiring</option>
-            </select>
+      <!-- FEED VIEW -->
+      <div class="feed-view" id="feedView">
+        <div class="card composer">
+          <div class="composer-top">
+            <div class="avatar-sm" id="composerAvatar">U</div>
+            <textarea id="postContent" placeholder="Share an update, photo, video, or job opportunity..."></textarea>
           </div>
-          <button class="btn-primary" id="publishBtn" onclick="publishPost()">Post</button>
+
+          <div class="media-preview" id="mediaPreviewBox">
+            <button class="remove-media-btn" onclick="clearSelectedMedia()">
+              <svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <div id="mediaPreviewContent"></div>
+          </div>
+
+          <input type="file" id="photoInput" accept="image/*" style="display:none" onchange="handleFileSelect(event, 'image')" />
+          <input type="file" id="videoInput" accept="video/*" style="display:none" onchange="handleFileSelect(event, 'video')" />
+
+          <div class="composer-toolbar">
+            <div class="media-buttons">
+              <button type="button" class="tool-btn" onclick="document.getElementById('photoInput').click()">
+                <svg class="icon" style="color:#1877f2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                Photo
+              </button>
+              <button type="button" class="tool-btn" onclick="document.getElementById('videoInput').click()">
+                <svg class="icon" style="color:#057642" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                Video
+              </button>
+              <select id="postCategory" class="cat-select">
+                <option value="Social">Social Update</option>
+                <option value="Career">Career Insight</option>
+                <option value="Hiring">Job / Hiring</option>
+              </select>
+            </div>
+            <button class="btn-primary" id="publishBtn" onclick="publishPost()">Post</button>
+          </div>
+        </div>
+
+        <div class="filter-bar">
+          <button class="filter-pill active" onclick="setFilter('all', this)">All Posts</button>
+          <button class="filter-pill" onclick="setFilter('Social', this)">Social</button>
+          <button class="filter-pill" onclick="setFilter('Career', this)">Career</button>
+          <button class="filter-pill" onclick="setFilter('Hiring', this)">Hiring</button>
+        </div>
+
+        <div id="feedContainer">Loading feed...</div>
+      </div>
+
+      <!-- REAL-TIME MESSAGING VIEW -->
+      <div class="chat-view" id="chatView">
+        <div class="chat-box">
+          <div class="chat-sidebar">
+            <div class="chat-sidebar-header">Conversations</div>
+            <div class="chat-room-item active" onclick="selectChatRoom('Global Community', this)">
+              <div class="avatar-sm" style="width:32px; height:32px; font-size:13px;">G</div>
+              <div>Global Community</div>
+            </div>
+            <div class="chat-room-item" onclick="selectChatRoom('Tech & Founders', this)">
+              <div class="avatar-sm" style="width:32px; height:32px; font-size:13px; background:#057642;">T</div>
+              <div>Tech & Founders</div>
+            </div>
+            <div class="chat-room-item" onclick="selectChatRoom('Jobs & Hiring', this)">
+              <div class="avatar-sm" style="width:32px; height:32px; font-size:13px; background:#d97706;">J</div>
+              <div>Jobs & Hiring</div>
+            </div>
+          </div>
+          <div class="chat-main">
+            <div class="chat-header">
+              <span id="currentRoomTitle">Global Community</span>
+              <span style="font-size:11px; color:#137333;">Live Chat</span>
+            </div>
+            <div class="chat-messages" id="chatMessagesBox">Loading messages...</div>
+            <div class="chat-input-area">
+              <input type="text" id="chatInput" placeholder="Write a message..." onkeypress="if(event.key==='Enter') sendChatMessage()" />
+              <button class="btn-primary" style="padding:8px 18px;" onclick="sendChatMessage()">Send</button>
+            </div>
+          </div>
         </div>
       </div>
-
-      <!-- Filter Pills -->
-      <div class="filter-bar">
-        <button class="filter-pill active" onclick="setFilter('all', this)">All Posts</button>
-        <button class="filter-pill" onclick="setFilter('Social', this)">Social</button>
-        <button class="filter-pill" onclick="setFilter('Career', this)">Career</button>
-        <button class="filter-pill" onclick="setFilter('Hiring', this)">Hiring</button>
-      </div>
-
-      <!-- Feed Container -->
-      <div id="feedContainer"></div>
     </main>
 
-    <!-- Right Column: People & Trending -->
+    <!-- Right Column: People & Direct Message Trigger -->
     <aside class="right-col">
       <div class="card right-card">
-        <h4 class="right-title">People you may know</h4>
-        <div class="connect-row">
-          <div class="connect-info">
-            <div class="avatar-sm" style="background:#057642; width:36px; height:36px; font-size:14px;">A</div>
-            <div>
-              <div style="font-weight:700; font-size:13px;">Ayesha Rahman</div>
-              <div style="font-size:11px; color:#5e6268;">Product Designer</div>
+        <h4 class="right-title">Active Members</h4>
+        <div id="membersList">
+          <div class="connect-row">
+            <div class="connect-info">
+              <div class="avatar-sm" style="background:#057642; width:36px; height:36px; font-size:14px;">A</div>
+              <div>
+                <div style="font-weight:700; font-size:13px;">Ayesha Rahman</div>
+                <div style="font-size:11px; color:#5e6268;">Product Designer</div>
+              </div>
             </div>
+            <button class="connect-btn" onclick="openDirectChat('Ayesha Rahman')">Message</button>
           </div>
-          <button class="connect-btn" onclick="toggleConnect(this)">
-            <svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            Connect
-          </button>
-        </div>
-        <div class="connect-row">
-          <div class="connect-info">
-            <div class="avatar-sm" style="background:#7c3aed; width:36px; height:36px; font-size:14px;">T</div>
-            <div>
-              <div style="font-weight:700; font-size:13px;">Tanvir Ahmed</div>
-              <div style="font-size:11px; color:#5e6268;">Full-Stack Developer</div>
+          <div class="connect-row">
+            <div class="connect-info">
+              <div class="avatar-sm" style="background:#7c3aed; width:36px; height:36px; font-size:14px;">T</div>
+              <div>
+                <div style="font-weight:700; font-size:13px;">Tanvir Ahmed</div>
+                <div style="font-size:11px; color:#5e6268;">Full-Stack Developer</div>
+              </div>
             </div>
+            <button class="connect-btn" onclick="openDirectChat('Tanvir Ahmed')">Message</button>
           </div>
-          <button class="connect-btn" onclick="toggleConnect(this)">
-            <svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            Connect
-          </button>
-        </div>
-        <div class="connect-row" style="border:none; margin:0; padding:0;">
-          <div class="connect-info">
-            <div class="avatar-sm" style="background:#d97706; width:36px; height:36px; font-size:14px;">N</div>
-            <div>
-              <div style="font-weight:700; font-size:13px;">Nadia Islam</div>
-              <div style="font-size:11px; color:#5e6268;">Tech Recruiter</div>
+          <div class="connect-row" style="border:none; margin:0; padding:0;">
+            <div class="connect-info">
+              <div class="avatar-sm" style="background:#d97706; width:36px; height:36px; font-size:14px;">N</div>
+              <div>
+                <div style="font-weight:700; font-size:13px;">Nadia Islam</div>
+                <div style="font-size:11px; color:#5e6268;">Tech Recruiter</div>
+              </div>
             </div>
+            <button class="connect-btn" onclick="openDirectChat('Nadia Islam')">Message</button>
           </div>
-          <button class="connect-btn" onclick="toggleConnect(this)">
-            <svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            Connect
-          </button>
         </div>
       </div>
 
@@ -427,91 +498,214 @@
   <script>
     const SUPABASE_URL = "https://uacgsfwjaodwoticjeyn.supabase.co";
     const SUPABASE_KEY = "sb_publishable_FWFj-TnKYchoM0JFYOsP6Q_8isdqHW2";
-    let db = null;
-    let useCloud = false;
+    const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    let currentUser = null;
+    let userProfile = { full_name: "Member", headline: "ProConnect Member", avatar_url: "" };
+    let authMode = "login";
     let currentFilter = "all";
+    let currentRoom = "Global Community";
 
     let selectedFile = null;
     let selectedMediaType = null;
     let selectedLocalPreviewUrl = null;
+    let allPosts = [];
 
-    let localPosts = [
-      {
-        id: 101,
-        username: "Ayesha Rahman",
-        headline: "Senior Product Designer at FinTech BD",
-        category: "Career",
-        content: "Excited to share that our team just launched our redesigned mobile banking experience. Building clean, accessible interfaces for millions of users is the best feeling.",
-        media_url: "",
-        media_type: "",
-        likes: 24,
-        likedByMe: false,
-        comments: [{ author: "Tanvir Ahmed", text: "Huge congrats Ayesha! The new UI looks super clean." }],
-        created_at: new Date(Date.now() - 3600000).toISOString()
-      },
-      {
-        id: 102,
-        username: "Tanvir Ahmed",
-        headline: "Full-Stack Engineer • Dhaka",
-        category: "Social",
-        content: "Late night coffee and coding in Dhaka. Nothing beats seeing your first web app go live.",
-        media_url: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
-        media_type: "image",
-        likes: 18,
-        likedByMe: false,
-        comments: [],
-        created_at: new Date(Date.now() - 7200000).toISOString()
-      },
-      {
-        id: 103,
-        username: "Nadia Islam",
-        headline: "Talent Lead • Hiring Developers",
-        category: "Hiring",
-        content: "We are hiring Junior Frontend & Web Developers (Remote / Dhaka Hybrid). Drop a comment below if you are building projects and looking for your next role.",
-        media_url: "",
-        media_type: "",
-        likes: 31,
-        likedByMe: false,
-        comments: [],
-        created_at: new Date(Date.now() - 10800000).toISOString()
-      }
-    ];
-
-    async function initApp() {
-      const statusEl = document.getElementById("dbStatus");
-      try {
-        if (window.supabase) {
-          db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-          const { data, error } = await db.from("posts").select("*").order("created_at", { ascending: false });
-          if (!error && data) {
-            useCloud = true;
-            statusEl.innerHTML = `<span class="status-dot"></span> Live Cloud`;
-            const cloudFormatted = data.map(row => ({
-              id: row.id,
-              username: row.username,
-              headline: row.headline || "Member • ProConnect",
-              category: row.category || "Social",
-              content: row.content,
-              media_url: row.media_url || "",
-              media_type: row.media_type || "",
-              likes: row.likes || 0,
-              likedByMe: false,
-              comments: [],
-              created_at: row.created_at
-            }));
-            localPosts = [...cloudFormatted, ...localPosts];
-          } else {
-            statusEl.innerHTML = `<span class="status-dot"></span> Preview Mode`;
-          }
-        } else {
-          statusEl.innerHTML = `<span class="status-dot"></span> Offline Mode`;
-        }
-      } catch (e) {
-        statusEl.innerHTML = `<span class="status-dot"></span> Preview Mode`;
-      }
-      renderFeed();
+    // --- AUTHENTICATION ---
+    function switchAuthTab(mode) {
+      authMode = mode;
+      document.getElementById("tabLogin").classList.toggle("active", mode === "login");
+      document.getElementById("tabSignup").classList.toggle("active", mode === "signup");
+      document.getElementById("signupFields").style.display = mode === "signup" ? "block" : "none";
+      document.getElementById("authSubmitBtn").textContent = mode === "signup" ? "Create Account" : "Log In";
+      document.getElementById("authError").style.display = "none";
     }
 
+    async function handleAuthSubmit() {
+      const email = document.getElementById("authEmail").value.trim();
+      const password = document.getElementById("authPassword").value.trim();
+      const errBox = document.getElementById("authError");
+      const btn = document.getElementById("authSubmitBtn");
+
+      if (!email || !password) {
+        errBox.textContent = "Please enter your email and password.";
+        errBox.style.display = "block";
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = "Please wait...";
+      errBox.style.display = "none";
+
+      if (authMode === "signup") {
+        const fullName = document.getElementById("authName").value.trim() || email.split("@")[0];
+        const headline = document.getElementById("authHeadline").value.trim() || "Member • ProConnect";
+        const { data, error } = await db.auth.signUp({
+          email,
+          password,
+          options: { data: { full_name: fullName, headline } }
+        });
+        if (error) {
+          errBox.textContent = error.message;
+          errBox.style.display = "block";
+          btn.disabled = false;
+          btn.textContent = "Create Account";
+          return;
+        }
+        if (data.user) {
+          await db.from("profiles").upsert({ id: data.user.id, full_name: fullName, headline, avatar_url: "" });
+        }
+        if (!data.session) {
+          errBox.style.color = "#137333";
+          errBox.textContent = "Account created! Check your email to confirm, or switch to Log In.";
+          errBox.style.display = "block";
+          btn.disabled = false;
+          btn.textContent = "Create Account";
+          return;
+        }
+      } else {
+        const { error } = await db.auth.signInWithPassword({ email, password });
+        if (error) {
+          errBox.textContent = error.message;
+          errBox.style.display = "block";
+          btn.disabled = false;
+          btn.textContent = "Log In";
+          return;
+        }
+      }
+
+      btn.disabled = false;
+      await checkSession();
+    }
+
+    async function handleLogout() {
+      await db.auth.signOut();
+      currentUser = null;
+      document.getElementById("authOverlay").classList.remove("hidden");
+    }
+
+    async function checkSession() {
+      const { data: { session } } = await db.auth.getSession();
+      if (session && session.user) {
+        currentUser = session.user;
+        document.getElementById("authOverlay").classList.add("hidden");
+        await loadUserProfile();
+        await loadPosts();
+        await loadChatMessages();
+        subscribeRealtime();
+      } else {
+        document.getElementById("authOverlay").classList.remove("hidden");
+      }
+    }
+
+    // --- PROFILE & AVATAR UPLOAD ---
+    async function loadUserProfile() {
+      const { data } = await db.from("profiles").select("*").eq("id", currentUser.id).single();
+      const meta = currentUser.user_metadata || {};
+      userProfile = {
+        full_name: (data && data.full_name) || meta.full_name || currentUser.email.split("@")[0],
+        headline: (data && data.headline) || meta.headline || "Member • ProConnect",
+        avatar_url: (data && data.avatar_url) || ""
+      };
+      renderProfileUI();
+    }
+
+    function renderProfileUI() {
+      document.getElementById("displayName").textContent = userProfile.full_name;
+      document.getElementById("displayHeadline").textContent = userProfile.headline;
+      document.getElementById("userNameInput").value = userProfile.full_name;
+      document.getElementById("userRoleInput").value = userProfile.headline;
+
+      const initial = userProfile.full_name.charAt(0).toUpperCase();
+      const profAv = document.getElementById("profileAvatar");
+      const compAv = document.getElementById("composerAvatar");
+
+      if (userProfile.avatar_url) {
+        profAv.innerHTML = `<img src="${escapeHTML(userProfile.avatar_url)}" />`;
+        compAv.innerHTML = `<img src="${escapeHTML(userProfile.avatar_url)}" />`;
+      } else {
+        profAv.textContent = initial;
+        compAv.textContent = initial;
+      }
+    }
+
+    async function uploadProfilePic(event) {
+      const file = event.target.files[0];
+      if (!file || !currentUser) return;
+      const cleanName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+      const filePath = `avatars/${currentUser.id}_${Date.now()}_${cleanName}`;
+
+      const { error } = await db.storage.from("media").upload(filePath, file);
+      if (error) {
+        alert("Upload failed: " + error.message);
+        return;
+      }
+      const { data: pub } = db.storage.from("media").getPublicUrl(filePath);
+      userProfile.avatar_url = pub.publicUrl;
+      await db.from("profiles").upsert({
+        id: currentUser.id,
+        full_name: userProfile.full_name,
+        headline: userProfile.headline,
+        avatar_url: userProfile.avatar_url
+      });
+      renderProfileUI();
+    }
+
+    async function saveProfileDetails() {
+      const btn = document.getElementById("saveProfBtn");
+      btn.textContent = "Saving...";
+      userProfile.full_name = document.getElementById("userNameInput").value.trim() || userProfile.full_name;
+      userProfile.headline = document.getElementById("userRoleInput").value.trim() || userProfile.headline;
+
+      await db.from("profiles").upsert({
+        id: currentUser.id,
+        full_name: userProfile.full_name,
+        headline: userProfile.headline,
+        avatar_url: userProfile.avatar_url
+      });
+      renderProfileUI();
+      btn.textContent = "Saved!";
+      setTimeout(() => { btn.textContent = "Save Profile"; }, 1500);
+    }
+
+    // --- NAVIGATION ---
+    function switchMainTab(tab, el) {
+      document.querySelectorAll(".nav-item").forEach(n => n.classList.remove("active"));
+      if (el) el.classList.add("active");
+
+      const feedView = document.getElementById("feedView");
+      const chatView = document.getElementById("chatView");
+
+      if (tab === "messages") {
+        feedView.classList.add("hidden");
+        chatView.classList.add("active");
+        loadChatMessages();
+      } else {
+        chatView.classList.remove("active");
+        feedView.classList.remove("hidden");
+        currentFilter = tab === "jobs" ? "Hiring" : "all";
+        renderFeed();
+      }
+    }
+
+    function openDirectChat(personName) {
+      switchMainTab("messages", document.getElementById("navMessages"));
+      const names = [userProfile.full_name, personName].sort();
+      const roomName = `${names[0]} & ${names[1]}`;
+      document.getElementById("currentRoomTitle").textContent = personName;
+      currentRoom = roomName;
+      loadChatMessages();
+    }
+
+    function selectChatRoom(roomName, el) {
+      document.querySelectorAll(".chat-room-item").forEach(i => i.classList.remove("active"));
+      if (el) el.classList.add("active");
+      currentRoom = roomName;
+      document.getElementById("currentRoomTitle").textContent = roomName;
+      loadChatMessages();
+    }
+
+    // --- POSTS, MEDIA, LIKES & COMMENTS ---
     function handleFileSelect(event, type) {
       const file = event.target.files[0];
       if (!file) return;
@@ -522,12 +716,9 @@
       const previewBox = document.getElementById("mediaPreviewBox");
       const previewContent = document.getElementById("mediaPreviewContent");
       previewBox.classList.add("active");
-
-      if (type === "image") {
-        previewContent.innerHTML = `<img src="${selectedLocalPreviewUrl}" alt="Selected photo" />`;
-      } else {
-        previewContent.innerHTML = `<video src="${selectedLocalPreviewUrl}" controls></video>`;
-      }
+      previewContent.innerHTML = type === "image"
+        ? `<img src="${selectedLocalPreviewUrl}" />`
+        : `<video src="${selectedLocalPreviewUrl}" controls></video>`;
     }
 
     function clearSelectedMedia() {
@@ -540,31 +731,19 @@
       document.getElementById("mediaPreviewContent").innerHTML = "";
     }
 
-    function updateProfileUI() {
-      const name = document.getElementById("userNameInput").value.trim() || "User";
-      const role = document.getElementById("userRoleInput").value.trim() || "Member";
-      document.getElementById("displayName").textContent = name;
-      document.getElementById("displayHeadline").textContent = role;
-      const initial = name.charAt(0).toUpperCase();
-      document.getElementById("profileAvatar").textContent = initial;
-      document.getElementById("composerAvatar").textContent = initial;
-    }
-
-    function setFilter(category, el) {
-      currentFilter = category;
-      document.querySelectorAll(".filter-pill, .nav-item").forEach(btn => btn.classList.remove("active"));
-      if (el) el.classList.add("active");
-      renderFeed();
+    async function loadPosts() {
+      const { data, error } = await db.from("posts").select("*").order("created_at", { ascending: false });
+      if (!error && data) {
+        allPosts = data;
+        renderFeed();
+      }
     }
 
     async function publishPost() {
-      const username = document.getElementById("userNameInput").value.trim() || "Anonymous";
-      const headline = document.getElementById("userRoleInput").value.trim() || "Member";
-      const category = document.getElementById("postCategory").value;
       const content = document.getElementById("postContent").value.trim();
-
+      const category = document.getElementById("postCategory").value;
       if (!content && !selectedFile) {
-        alert("Write a message or choose a photo/video before posting.");
+        alert("Write a message or choose a photo/video first.");
         return;
       }
 
@@ -572,65 +751,40 @@
       btn.disabled = true;
       btn.textContent = "Posting...";
 
-      let finalMediaUrl = selectedLocalPreviewUrl || "";
-      const finalMediaType = selectedMediaType || "";
-
-      if (useCloud && db && selectedFile) {
-        try {
-          const cleanName = selectedFile.name.replace(/[^a-zA-Z0-9._-]/g, "_");
-          const filePath = `${Date.now()}_${cleanName}`;
-          const { error: uploadErr } = await db.storage.from("media").upload(filePath, selectedFile);
-          if (!uploadErr) {
-            const { data: pubData } = db.storage.from("media").getPublicUrl(filePath);
-            if (pubData && pubData.publicUrl) {
-              finalMediaUrl = pubData.publicUrl;
-            }
-          }
-        } catch (e) {
-          console.warn("Using local preview fallback.");
+      let finalMediaUrl = "";
+      if (selectedFile) {
+        const cleanName = selectedFile.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+        const filePath = `posts/${Date.now()}_${cleanName}`;
+        const { error: upErr } = await db.storage.from("media").upload(filePath, selectedFile);
+        if (!upErr) {
+          const { data: pub } = db.storage.from("media").getPublicUrl(filePath);
+          finalMediaUrl = pub.publicUrl;
         }
       }
 
-      const newPost = {
-        id: Date.now(),
-        username,
-        headline,
+      await db.from("posts").insert([{
+        username: userProfile.full_name,
+        headline: userProfile.headline,
+        avatar_url: userProfile.avatar_url,
         category,
         content,
         media_url: finalMediaUrl,
-        media_type: finalMediaType,
+        media_type: selectedMediaType || "",
         likes: 0,
-        likedByMe: false,
-        comments: [],
-        created_at: new Date().toISOString()
-      };
-
-      localPosts.unshift(newPost);
-
-      if (useCloud && db) {
-        await db.from("posts").insert([{
-          username,
-          headline,
-          category,
-          content,
-          media_url: finalMediaUrl.startsWith("http") ? finalMediaUrl : "",
-          media_type: finalMediaType
-        }]);
-      }
+        comments: []
+      }]);
 
       document.getElementById("postContent").value = "";
       clearSelectedMedia();
       btn.disabled = false;
       btn.textContent = "Post";
-      renderFeed();
+      await loadPosts();
     }
 
-    function toggleLike(id) {
-      const post = localPosts.find(p => p.id === id);
-      if (!post) return;
-      post.likedByMe = !post.likedByMe;
-      post.likes += post.likedByMe ? 1 : -1;
-      renderFeed();
+    async function toggleLike(id, currentLikes) {
+      const newLikes = (currentLikes || 0) + 1;
+      await db.from("posts").update({ likes: newLikes }).eq("id", id);
+      await loadPosts();
     }
 
     function toggleComments(id) {
@@ -638,83 +792,75 @@
       if (box) box.classList.toggle("open");
     }
 
-    function addComment(id) {
+    async function addComment(id) {
       const input = document.getElementById(`comment-input-${id}`);
       const text = input.value.trim();
       if (!text) return;
-      const author = document.getElementById("userNameInput").value.trim() || "User";
-      const post = localPosts.find(p => p.id === id);
-      if (post) {
-        post.comments.push({ author, text });
-        renderFeed();
-        const box = document.getElementById(`comments-${id}`);
-        if (box) box.classList.add("open");
-      }
+
+      const post = allPosts.find(p => p.id === id);
+      const updatedComments = Array.isArray(post.comments) ? [...post.comments] : [];
+      updatedComments.push({ author: userProfile.full_name, text });
+
+      await db.from("posts").update({ comments: updatedComments }).eq("id", id);
+      await loadPosts();
+      const box = document.getElementById(`comments-${id}`);
+      if (box) box.classList.add("open");
     }
 
-    function toggleConnect(btn) {
-      const countEl = document.getElementById("connCount");
-      let count = parseInt(countEl.textContent, 10);
-      if (btn.classList.contains("connected")) {
-        btn.classList.remove("connected");
-        btn.innerHTML = `<svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Connect`;
-        countEl.textContent = count - 1;
-      } else {
-        btn.classList.add("connected");
-        btn.innerHTML = `<svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Connected`;
-        countEl.textContent = count + 1;
-      }
-    }
-
-    function escapeHTML(str) {
-      return String(str).replace(/[&<>'"]/g, tag => ({
-        '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
-      }[tag]));
+    function setFilter(category, el) {
+      currentFilter = category;
+      document.querySelectorAll(".filter-pill").forEach(b => b.classList.remove("active"));
+      if (el) el.classList.add("active");
+      renderFeed();
     }
 
     function renderFeed() {
       const container = document.getElementById("feedContainer");
       const query = document.getElementById("searchInput").value.toLowerCase().trim();
 
-      const filtered = localPosts.filter(p => {
-        const matchesCat = currentFilter === "all" || p.category === currentFilter;
+      const filtered = allPosts.filter(p => {
+        const cat = p.category || "Social";
+        const matchesCat = currentFilter === "all" || cat === currentFilter;
         const matchesSearch = !query ||
-          p.content.toLowerCase().includes(query) ||
-          p.username.toLowerCase().includes(query) ||
-          p.headline.toLowerCase().includes(query);
+          (p.content || "").toLowerCase().includes(query) ||
+          (p.username || "").toLowerCase().includes(query);
         return matchesCat && matchesSearch;
       });
 
       if (filtered.length === 0) {
-        container.innerHTML = `<div class="card post-card" style="text-align:center; color:#5e6268;">No posts match this filter yet.</div>`;
+        container.innerHTML = `<div class="card post-card" style="text-align:center; color:#5e6268;">No posts yet. Be the first to share something!</div>`;
         return;
       }
 
       container.innerHTML = filtered.map(post => {
-        const badgeClass = post.category === "Career" ? "badge-career" : post.category === "Hiring" ? "badge-hiring" : "badge-social";
-        const initial = post.username.charAt(0).toUpperCase();
+        const cat = post.category || "Social";
+        const badgeClass = cat === "Career" ? "badge-career" : cat === "Hiring" ? "badge-hiring" : "badge-social";
+        const initial = (post.username || "U").charAt(0).toUpperCase();
+        const avatarHTML = post.avatar_url
+          ? `<div class="avatar-sm"><img src="${escapeHTML(post.avatar_url)}" /></div>`
+          : `<div class="avatar-sm">${escapeHTML(initial)}</div>`;
 
         let mediaHTML = "";
         if (post.media_url) {
-          if (post.media_type === "video") {
-            mediaHTML = `<video class="post-media" src="${escapeHTML(post.media_url)}" controls></video>`;
-          } else {
-            mediaHTML = `<img class="post-media" src="${escapeHTML(post.media_url)}" onerror="this.style.display='none'" />`;
-          }
+          mediaHTML = post.media_type === "video"
+            ? `<video class="post-media" src="${escapeHTML(post.media_url)}" controls></video>`
+            : `<img class="post-media" src="${escapeHTML(post.media_url)}" onerror="this.style.display='none'" />`;
         }
+
+        const commentsList = Array.isArray(post.comments) ? post.comments : [];
 
         return `
           <div class="card post-card">
             <div class="post-header">
               <div class="post-user">
-                <div class="avatar-sm">${escapeHTML(initial)}</div>
+                ${avatarHTML}
                 <div>
                   <div class="post-author">${escapeHTML(post.username)}</div>
-                  <div class="post-role">${escapeHTML(post.headline)}</div>
+                  <div class="post-role">${escapeHTML(post.headline || "Member")}</div>
                   <div class="post-time">${new Date(post.created_at).toLocaleString()}</div>
                 </div>
               </div>
-              <span class="post-badge ${badgeClass}">${escapeHTML(post.category)}</span>
+              <span class="post-badge ${badgeClass}">${escapeHTML(cat)}</span>
             </div>
 
             ${post.content ? `<div class="post-body">${escapeHTML(post.content)}</div>` : ""}
@@ -723,23 +869,23 @@
             <div class="post-stats">
               <span class="likes-count">
                 <svg class="icon icon-sm" style="color:#1877f2" viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
-                ${post.likes} Likes
+                ${post.likes || 0} Likes
               </span>
-              <span>${post.comments.length} Comments</span>
+              <span>${commentsList.length} Comments</span>
             </div>
 
             <div class="post-actions">
-              <button class="action-btn ${post.likedByMe ? "liked" : ""}" onclick="toggleLike(${post.id})">
+              <button class="action-btn" onclick="toggleLike(${post.id}, ${post.likes || 0})">
                 <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
-                ${post.likedByMe ? "Liked" : "Like"}
+                Like
               </button>
               <button class="action-btn" onclick="toggleComments(${post.id})">
                 <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                 Comment
               </button>
-              <button class="action-btn" onclick="alert('Post link copied to clipboard.')">
-                <svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-                Share
+              <button class="action-btn" onclick="openDirectChat('${escapeHTML(post.username)}')">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                Message
               </button>
             </div>
 
@@ -748,7 +894,7 @@
                 <input type="text" id="comment-input-${post.id}" placeholder="Write a comment..." onkeypress="if(event.key==='Enter') addComment(${post.id})" />
                 <button class="btn-primary" style="padding:6px 14px; font-size:12px;" onclick="addComment(${post.id})">Send</button>
               </div>
-              ${post.comments.map(c => `
+              ${commentsList.map(c => `
                 <div class="comment-item">
                   <span class="comment-author">${escapeHTML(c.author)}:</span>
                   <span>${escapeHTML(c.text)}</span>
@@ -760,7 +906,69 @@
       }).join("");
     }
 
-    initApp();
+    // --- REAL-TIME CHAT ---
+    async function loadChatMessages() {
+      const box = document.getElementById("chatMessagesBox");
+      const { data, error } = await db
+        .from("messages")
+        .select("*")
+        .eq("room", currentRoom)
+        .order("created_at", { ascending: true });
+
+      if (error) {
+        box.innerHTML = `<div style="color:#666; font-size:13px;">Run the SQL setup to enable live chat messages.</div>`;
+        return;
+      }
+
+      if (!data || data.length === 0) {
+        box.innerHTML = `<div style="color:#666; font-size:13px; text-align:center; margin-top:40px;">No messages in ${escapeHTML(currentRoom)} yet. Say hello!</div>`;
+        return;
+      }
+
+      box.innerHTML = data.map(m => {
+        const isMe = m.sender_name === userProfile.full_name;
+        return `
+          <div class="msg-bubble ${isMe ? "msg-me" : "msg-other"}">
+            <div class="msg-meta">${escapeHTML(m.sender_name)}</div>
+            <div>${escapeHTML(m.text)}</div>
+          </div>
+        `;
+      }).join("");
+      box.scrollTop = box.scrollHeight;
+    }
+
+    async function sendChatMessage() {
+      const input = document.getElementById("chatInput");
+      const text = input.value.trim();
+      if (!text) return;
+      input.value = "";
+
+      await db.from("messages").insert([{
+        room: currentRoom,
+        sender_name: userProfile.full_name,
+        text
+      }]);
+      await loadChatMessages();
+    }
+
+    function subscribeRealtime() {
+      db.channel("public-updates")
+        .on("postgres_changes", { event: "INSERT", schema: "public", table: "messages" }, () => {
+          loadChatMessages();
+        })
+        .on("postgres_changes", { event: "*", schema: "public", table: "posts" }, () => {
+          loadPosts();
+        })
+        .subscribe();
+    }
+
+    function escapeHTML(str) {
+      return String(str || "").replace(/[&<>'"]/g, tag => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+      }[tag]));
+    }
+
+    checkSession();
   </script>
 </body>
 </html>
